@@ -1,0 +1,25 @@
+// Protobuf specification for the Apalache TransitionExplorer
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "at.forsyte.apalache.transex.v1";
+option java_outer_classname = "TransExProto";
+option objc_class_prefix = "TEP";
+
+package transex;
+
+service TransitionExplorer {
+  rpc OpenConnection (ConnectRequest) returns (Connection);
+  // rpc Terminate (TerminateRequest) returns (TerminationReply) {}
+}
+
+message ConnectRequest {
+}
+
+message Connection {
+  string id = 1;
+}
+
+// service Terminate {
+// }

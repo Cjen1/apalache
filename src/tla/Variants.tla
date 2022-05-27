@@ -92,7 +92,6 @@ MatchTag(__variant, __tagValue, __ThenOper(_), __ElseOper(_)) ==
  *     { tag: Str, a } => r
  *   ) => r
  *)
- *)
 MatchOnly(__variant, __ThenOper(_)) ==
     \* default untyped implementation
     __ThenOper(__variant)

@@ -212,6 +212,20 @@ lazy val distribution = (project in file("mod-distribution"))
       testSettings
   )
 
+lazy val transex = (project in file("transex"))
+  .settings(
+      libraryDependencies ++= Seq(
+          Deps.grpcNetty,
+          Deps.scalapbRuntimGrpc,
+          Deps.zioGrpcCodgen,
+      ),
+      // See https://scalapb.github.io/zio-grpc/docs/installation
+      Compile / PB.targets := Seq(
+          scalapb.gen(grpc = true) -> (Compile / sourceManaged).value / "scalapb",
+          scalapb.zio_grpc.ZioCodeGenerator -> (Compile / sourceManaged).value / "scalapb",
+      ),
+  )
+
 ///////////////
 // Packaging //
 ///////////////
@@ -231,6 +245,7 @@ lazy val root = (project in file("."))
       tla_pp,
       tla_assignments,
       tla_bmcmt,
+      transex,
       tool,
       distribution,
   )
